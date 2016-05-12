@@ -420,9 +420,9 @@ exports.register = function (plugin, options, next) {
                 agent: request.headers['user-agent'],
                 referer: request.headers.referer || request.headers.referrer || '-',
                 http_ver: request.raw.req.httpVersion,
-                length: request.response.headers['content-length'],
+                length: request.response.headers['content-length'] || 0,
                 status: request.response.statusCode,
-                response_time: new Date().getTime() - request.info.received + 'ms'
+                response_time: new Date().getTime() - request.info.received
             };
             return bucker.access(access);
         }
